@@ -11,7 +11,7 @@ public class Student {
 	/**
 	 * id.
 	 */
-	private String id;
+	private int id;
 
 	/**
 	 * name.
@@ -26,7 +26,7 @@ public class Student {
 	/**
 	 * @return the id
 	 */
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
@@ -34,7 +34,7 @@ public class Student {
 	 * @param id
 	 *            the id to set
 	 */
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -79,9 +79,21 @@ public class Student {
 	 * 
 	 * @param id
 	 * @param name
+	 */
+	public Student(int id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
+
+	/**
+	 * Constructor using fields.
+	 * 
+	 * @param id
+	 * @param name
 	 * @param score
 	 */
-	public Student(String id, String name, Score score) {
+	public Student(int id, String name, Score score) {
 		super();
 		this.id = id;
 		this.name = name;
