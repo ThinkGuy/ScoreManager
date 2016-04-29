@@ -1,4 +1,4 @@
-package com.scoreManager.database;
+package com.scoreManager.model;
 
 /**
  * Score.
