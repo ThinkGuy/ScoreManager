@@ -13,7 +13,7 @@ import java.sql.Statement;
 public class DataBase {
 
 	public static final String STUDENT_TABLE = "student";
-	public static final String SCORE_TABLE = "sourse";
+	public static final String SCORE_TABLE = "course";
 	public static final String CHOOSE_TABLE = "choose";
 	public static final String MANGER_TABLE = "manager";
 
@@ -23,7 +23,7 @@ public class DataBase {
 	private String url = "jdbc:mysql://localhost:3306/scoremanager";
 	private String username = "root";
 	private String password = "root";
-	private Student student;
+	private String sql;
 
 	public DataBase() {
 		try {
@@ -81,10 +81,28 @@ public class DataBase {
 		return executeSql(sql);
 	}
 
+	/**
+	 * search.
+	 * @param object
+	 * @return
+	 */
+	public boolean search(Object object) {
+		
+		if (object instanceof Manager) {
+			Manager manager = (Manager)object;
+			sql = "select * from " + MANGER_TABLE + " where name='" 
+			+  manager.getName() + "' and password='" + password + "';";
+		} else {
+			//TODO else man.
+		}
+		
+		return executeSql(sql);
+	}
+	
 	public static void main(String[] args) {
 		DataBase dataBase = new DataBase();
 		
-		dataBase.student = new Student(2013400, "刘鑫伟");
+//		dataBase.student = new Student(2013400, "刘鑫伟");
 		Manager manager = new Manager("20134019", "20134019");
 		
 		dataBase.insertInfo(manager);
