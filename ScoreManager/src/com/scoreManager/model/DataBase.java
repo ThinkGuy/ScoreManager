@@ -13,7 +13,8 @@ import java.sql.Statement;
 public class DataBase {
 
 	public static final String STUDENT_TABLE = "student";
-	public static final String SCORE_TABLE = "score";
+	public static final String SCORE_TABLE = "sourse";
+	public static final String CHOOSE_TABLE = "choose";
 	public static final String MANGER_TABLE = "manager";
 
 	private Connection connection;
@@ -55,6 +56,11 @@ public class DataBase {
 		}
 	}
 
+	/**
+	 * 插入信息。
+	 * @param object
+	 * @return
+	 */
 	public boolean insertInfo(Object object) {
 		String sql = null;
 		if (object instanceof Student) {
@@ -63,9 +69,9 @@ public class DataBase {
 			+ student.getId() + ",'" + student.getName() +"');";
 		} else if (object instanceof Score){
 			Score score = (Score) object;
-			sql = "insert into " + SCORE_TABLE + " (sid, math, chinese, english) "
-					+ "values(" + student.getId() + "," + score.getMath() + "," 
-					+ score.getChinese() + ","  + score.getEnglish() + ");";
+//			sql = "insert into " + SCORE_TABLE + " (sid, math, chinese, english) "
+//					+ "values(" + student.getId() + "," + score.getMath() + "," 
+//					+ score.getChinese() + ","  + score.getEnglish() + ");";
 		} else {
 			Manager manager = (Manager)object;
 			sql = "insert into " + MANGER_TABLE + " (name, password) values('"
@@ -81,7 +87,6 @@ public class DataBase {
 		dataBase.student = new Student(2013400, "刘鑫伟");
 		Manager manager = new Manager("20134019", "20134019");
 		
-		Score score = new Score(99, 99, 88);
 		dataBase.insertInfo(manager);
 	}
 	

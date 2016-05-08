@@ -1,5 +1,7 @@
 package com.scoreManager.model;
 
+import java.util.ArrayList;
+
 /**
  * Student.
  * 
@@ -18,10 +20,7 @@ public class Student {
 	 */
 	private String name;
 
-	/**
-	 * score.
-	 */
-	private Score score;
+	private ArrayList<Score> scores = new ArrayList<Score>();
 
 	/**
 	 * @return the id
@@ -54,18 +53,17 @@ public class Student {
 	}
 
 	/**
-	 * @return the score
+	 * @return the scores
 	 */
-	public Score getScore() {
-		return score;
+	public ArrayList<Score> getScores() {
+		return scores;
 	}
 
 	/**
-	 * @param score
-	 *            the score to set
+	 * @param scores the scores to set
 	 */
-	public void setScore(Score score) {
-		this.score = score;
+	public void setScores(ArrayList<Score> scores) {
+		this.scores = scores;
 	}
 
 	/**
@@ -86,17 +84,5 @@ public class Student {
 		this.name = name;
 	}
 
-	/**
-	 * Constructor using fields.
-	 * 
-	 * @param id
-	 * @param name
-	 * @param score
-	 */
-	public Student(int id, String name, Score score) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.score = score;
-	}
+	
 }

@@ -7,87 +7,74 @@ package com.scoreManager.model;
  *
  */
 public class Score {
-
 	/**
-	 * math.
+	 * course id.
 	 */
-	private int math;
-
+	private int cid;
 	/**
-	 * Chinese.
+	 * course name.
 	 */
-	private int chinese;
-
+	private String cname;
 	/**
-	 * English.
+	 * course score.
 	 */
-	private int english;
-
+	private int score;
 	/**
-	 * @return the math
+	 * @return the cid
 	 */
-	public int getMath() {
-		return math;
+	public int getCid() {
+		return cid;
 	}
-
 	/**
-	 * @param math
-	 *            the math to set
+	 * @param cid the cid to set
 	 */
-	public void setMath(int math) {
-		this.math = math;
+	public void setCid(int cid) {
+		this.cid = cid;
 	}
-
 	/**
-	 * @return the Chinese
+	 * @return the cname
 	 */
-	public int getChinese() {
-		return chinese;
+	public String getCname() {
+		return cname;
 	}
-
 	/**
-	 * @param chinese
-	 *            the Chinese to set
+	 * @param cname the cname to set
 	 */
-	public void setChinese(int chinese) {
-		this.chinese = chinese;
+	public void setCname(String cname) {
+		this.cname = cname;
 	}
-
 	/**
-	 * @return the English
+	 * @return the score
 	 */
-	public int getEnglish() {
-		return english;
+	public int getScore() {
+		return score;
 	}
-
 	/**
-	 * @param english
-	 *            the English to set
+	 * @param score the score to set
 	 */
-	public void setEnglish(int english) {
-		this.english = english;
+	public void setScore(int score) {
+		this.score = score;
 	}
-
+	
+	
+	
 	/**
 	 * Default constructor.
 	 */
 	public Score() {
-	}
-
-	/**
-	 * constructor using fields.
-	 * 
-	 * @param math
-	 *            Math.
-	 * @param chinese
-	 *            Chinese.
-	 * @param english
-	 *            English.
-	 */
-	public Score(int math, int chinese, int english) {
 		super();
-		this.math = math;
-		this.chinese = chinese;
-		this.english = english;
+	}
+	
+	/**
+	 * Constructor using fields.
+	 * @param cid
+	 * @param cname
+	 * @param score
+	 */
+	public Score(int cid, String cname, int score) {
+		super();
+		this.cid = cid;
+		this.cname = cname;
+		this.score = score;
 	}
 }
