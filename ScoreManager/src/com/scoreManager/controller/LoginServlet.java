@@ -2,6 +2,7 @@ package com.scoreManager.controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,18 +23,20 @@ public class LoginServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(request.getParameter("name"));
 		name = request.getParameter("name");
 		password = request.getParameter("password");
-		
 		Manager manager = new Manager(name, password);
-		
 		DataBase dataBase = new DataBase();
-		if (dataBase.search(manager)) {
-			//TODO success.
+		manager = (Manager)dataBase.search(manager);
+		
+		RequestDispatcher view = null;
+		if (name.equals(manager.getName()) && password.equals(manager.getPassword())) {
+			view = request.getRequestDispatcher("choose.jsp");
+		} else {
+			view = request.getRequestDispatcher("loginFalse.jsp");
 		}
 		
-		
+		view.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request,

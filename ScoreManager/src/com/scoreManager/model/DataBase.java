@@ -2,6 +2,8 @@ package com.scoreManager.model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
@@ -86,17 +88,29 @@ public class DataBase {
 	 * @param object
 	 * @return
 	 */
-	public boolean search(Object object) {
+	public Object search(Object object) {
 		
 		if (object instanceof Manager) {
 			Manager manager = (Manager)object;
-			sql = "select * from " + MANGER_TABLE + " where name='" 
-			+  manager.getName() + "' and password='" + password + "';";
+			sql = "select name,password from " + MANGER_TABLE + " where name='" 
+					+  manager.getName() + "';";
+			manager.setName("null");
+			manager.setPassword("null");
+			try {
+				ResultSet resultSet = statement.executeQuery(sql);
+				while (resultSet.next()) {
+					manager.setName(resultSet.getString("name"));
+					manager.setPassword(resultSet.getString("password"));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			object = manager;
 		} else {
 			//TODO else man.
 		}
 		
-		return executeSql(sql);
+		return object;
 	}
 	
 	public static void main(String[] args) {
@@ -105,7 +119,7 @@ public class DataBase {
 //		dataBase.student = new Student(2013400, "刘鑫伟");
 		Manager manager = new Manager("20134019", "20134019");
 		
-		dataBase.insertInfo(manager);
+		dataBase.search(manager);
 	}
 	
 }
