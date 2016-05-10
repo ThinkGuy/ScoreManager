@@ -61,8 +61,10 @@ input::-ms-clear {
 	color:#333;
 	display:inline-block;
 	height:45px;
+	width:230px;
 	line-height:45px;
 	outline:none;
+	text-align:center;
 	*hide-focus:expression(this.hideFocus=true);
 }
 .header .switch .switch_btn:hover {

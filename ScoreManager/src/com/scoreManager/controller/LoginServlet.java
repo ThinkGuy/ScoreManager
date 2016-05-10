@@ -23,8 +23,8 @@ public class LoginServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		name = request.getParameter("username");
-		password = request.getParameter("p");
+		name = request.getParameter("name");
+		password = request.getParameter("password");
 		Manager manager = new Manager(name, password);
 		DataBase dataBase = new DataBase();
 		manager = (Manager)dataBase.search(manager);
