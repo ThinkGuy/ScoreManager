@@ -27,7 +27,7 @@ public class LoginServlet extends HttpServlet {
 		password = request.getParameter("password");
 		Manager manager = new Manager(name, password);
 		DataBase dataBase = new DataBase();
-		manager = (Manager)dataBase.search(manager);
+		manager = (Manager)dataBase.search(manager, null);
 		
 		RequestDispatcher view = null;
 		if (name.equals(manager.getName()) && password.equals(manager.getPassword())) {

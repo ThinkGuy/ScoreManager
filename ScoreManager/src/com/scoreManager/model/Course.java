@@ -1,12 +1,12 @@
 package com.scoreManager.model;
 
 /**
- * Score.
+ * Course.
  * 
  * @author 刘鑫伟
  *
  */
-public class Score {
+public class Course {
 	/**
 	 * course id.
 	 */
@@ -15,10 +15,12 @@ public class Score {
 	 * course name.
 	 */
 	private String cname;
+	
 	/**
 	 * course score.
 	 */
-	private int score;
+	private int Score;
+	
 	/**
 	 * @return the cid
 	 */
@@ -43,25 +45,23 @@ public class Score {
 	public void setCname(String cname) {
 		this.cname = cname;
 	}
+	
 	/**
 	 * @return the score
 	 */
 	public int getScore() {
-		return score;
+		return Score;
 	}
 	/**
 	 * @param score the score to set
 	 */
 	public void setScore(int score) {
-		this.score = score;
+		Score = score;
 	}
-	
-	
-	
 	/**
 	 * Default constructor.
 	 */
-	public Score() {
+	public Course() {
 		super();
 	}
 	
@@ -69,12 +69,30 @@ public class Score {
 	 * Constructor using fields.
 	 * @param cid
 	 * @param cname
-	 * @param score
 	 */
-	public Score(int cid, String cname, int score) {
+	public Course(int cid, String cname) {
 		super();
 		this.cid = cid;
 		this.cname = cname;
-		this.score = score;
+	}
+	
+	/**
+	 * @param cid
+	 * @param cname
+	 * @param score
+	 */
+	public Course(int cid, String cname, int score) {
+		super();
+		this.cid = cid;
+		this.cname = cname;
+		Score = score;
+	}
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Course [cid=" + cid + ", cname=" + cname + ", Score=" + Score
+				+ "]";
 	}
 }

@@ -20,7 +20,15 @@ public class Student {
 	 */
 	private String name;
 
-	private ArrayList<Score> scores = new ArrayList<Score>();
+	/**
+	 * age.
+	 */
+	private int age;
+
+	/**
+	 * socre.
+	 */
+	private ArrayList<Course> courses = new ArrayList<Course>();
 
 	/**
 	 * @return the id
@@ -53,17 +61,33 @@ public class Student {
 	}
 
 	/**
-	 * @return the scores
+	 * @return the age
 	 */
-	public ArrayList<Score> getScores() {
-		return scores;
+	public int getAge() {
+		return age;
 	}
 
 	/**
-	 * @param scores the scores to set
+	 * @param age
+	 *            the age to set
 	 */
-	public void setScores(ArrayList<Score> scores) {
-		this.scores = scores;
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	/**
+	 * @return the courses
+	 */
+	public ArrayList<Course> getCourses() {
+		return courses;
+	}
+
+	/**
+	 * @param courses
+	 *            the courses to set
+	 */
+	public void setCourses(ArrayList<Course> courses) {
+		this.courses = courses;
 	}
 
 	/**
@@ -76,12 +100,31 @@ public class Student {
 	 * Constructor using fields.
 	 * 
 	 * @param id
+	 */
+	public Student(int id) {
+		super();
+		this.id = id;
+	}
+	
+	/**
+	 * Constructor using fields.
+	 * 
+	 * @param id
 	 * @param name
 	 */
 	public Student(int id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Student [id=" + id + ", name=" + name + ", age=" + age
+				+ ", courses=" + courses + "]";
 	}
 
 	

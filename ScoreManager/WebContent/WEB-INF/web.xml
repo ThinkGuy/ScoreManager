@@ -10,7 +10,7 @@
   </servlet>
   <servlet>
     <servlet-name>Manager</servlet-name>
-    <servlet-class>com.socreManager.controller.ManagerServlet</servlet-class>
+    <servlet-class>com.scoreManager.controller.ManagerServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Login</servlet-name>

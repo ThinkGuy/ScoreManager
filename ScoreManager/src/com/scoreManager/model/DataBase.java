@@ -5,6 +5,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+
+import com.sun.swing.internal.plaf.basic.resources.basic;
 
 /**
  * DataBase.
@@ -69,8 +72,8 @@ public class DataBase {
 			Student student = (Student) object;
 			sql = "insert into " + STUDENT_TABLE + " (sid, sname) values(" 
 			+ student.getId() + ",'" + student.getName() +"');";
-		} else if (object instanceof Score){
-			Score score = (Score) object;
+		} else if (object instanceof Course){
+			Course score = (Course) object;
 //			sql = "insert into " + SCORE_TABLE + " (sid, math, chinese, english) "
 //					+ "values(" + student.getId() + "," + score.getMath() + "," 
 //					+ score.getChinese() + ","  + score.getEnglish() + ");";
@@ -88,7 +91,7 @@ public class DataBase {
 	 * @param object
 	 * @return
 	 */
-	public Object search(Object object) {
+	public Object search(Object object, String wantTo) {
 		
 		if (object instanceof Manager) {
 			Manager manager = (Manager)object;
@@ -106,8 +109,62 @@ public class DataBase {
 				e.printStackTrace();
 			}
 			object = manager;
-		} else {
+		} else if ("searchStudentInfo".equals(wantTo)) {
+			Student student = (Student)object;
+			sql = "select * from student where sid = " + student.getId() + ";";
+			
+			try {
+				ResultSet resultSet = statement.executeQuery(sql);
+				while (resultSet.next()) {
+					student.setName(resultSet.getString("sname"));
+					student.setAge(Integer.parseInt((resultSet.getString("age"))));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+			object = student;
 			//TODO else man.
+		} else if ("searchCourseInfo".equals(wantTo)) {
+			ArrayList<Course> courses = new ArrayList<>();
+			sql = "select * from course;";
+
+			try {
+				ResultSet resultSet = statement.executeQuery(sql);
+				while (resultSet.next()) {
+					courses.add(new Course(Integer.parseInt(resultSet.getString(
+							"cid")), resultSet.getString("cname")));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+			object = courses;
+		} else if ("searchScore".equals(wantTo)) {
+			Student student = (Student)object;
+			sql = "select student.sid,sname,age,course.cid, cname, score from "
+					+ "student, course, choose where student.sid = choose.sid "
+					+ "and course.cid = choose.cid and student.sid=" 
+					+ student.getId() + ";";
+			
+			try {
+				ResultSet resultSet = statement.executeQuery(sql);
+				while (resultSet.next()) {
+					if (student.getName() == null) {
+						student.setName(resultSet.getString("sname"));
+						student.setAge(Integer.parseInt((resultSet.getString("age"))));
+						student.setCourses(new ArrayList<Course>());
+					} 
+					student.getCourses().add(new Course(Integer.parseInt(resultSet.getString(
+							"cid")), resultSet.getString("cname"), Integer.parseInt(resultSet.getString(
+									"score"))));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+			object = student;
+			
 		}
 		
 		return object;
@@ -119,7 +176,6 @@ public class DataBase {
 //		dataBase.student = new Student(2013400, "刘鑫伟");
 		Manager manager = new Manager("20134019", "20134019");
 		
-		dataBase.search(manager);
 	}
 	
 }
