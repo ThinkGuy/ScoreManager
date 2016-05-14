@@ -1,6 +1,7 @@
 package com.scoreManager.controller;
 
 import java.io.IOException;
+import java.nio.file.Watchable;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -21,8 +22,7 @@ import com.scoreManager.model.Student;
 public class ManagerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private String wantTo;
-	
- 
+    private Student student;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -33,23 +33,60 @@ public class ManagerServlet extends HttpServlet {
 		
 		RequestDispatcher view = null;
 		if ("searchStudentInfo".equals(wantTo)) {
-			Student student = new Student(Integer.parseInt(
+			student = new Student(Integer.parseInt(
 					request.getParameter("sid")));
 			student = (Student)dataBase.search(student, wantTo);
 			view = request.getRequestDispatcher("display-StudentInfo.jsp");
 			request.setAttribute("student", student);
 		} else if ("searchCourseInfo".equals(wantTo)) {
-			ArrayList<Course> courses  = (ArrayList<Course>)dataBase.search(null, wantTo);
+			ArrayList<Course> courses  = (ArrayList<Course>)dataBase.search(null
+					, wantTo);
 			view = request.getRequestDispatcher("displayCourseInfo.jsp");
 			request.setAttribute("courses", courses);
 		} else if ("searchScore".equals(wantTo)) {
-			Student student = new Student(Integer.parseInt(
+			student = new Student(Integer.parseInt(
 					request.getParameter("sid")));
 			student = (Student)dataBase.search(student, wantTo);
-			System.out.println(student.toString());
 			view = request.getRequestDispatcher("displayScore.jsp");
 			request.setAttribute("student", student);
-		}
+		} else if ("insertStudentInfo".equals(wantTo)) {
+			student = new Student(Integer.parseInt(request.getParameter("sid")),
+					request.getParameter("name"));
+			student.setAge(Integer.parseInt(request.getParameter("age")));
+			dataBase.insertInfo(student, wantTo);
+			view = request.getRequestDispatcher("display-StudentInfo.jsp");
+			request.setAttribute("student", student);
+		} else if ("insertCourseInfo".equals(wantTo)) {
+			Course course = new Course(Integer.parseInt(request.getParameter("cid")),
+					request.getParameter("cname"));
+			dataBase.insertInfo(course, wantTo);
+			view = request.getRequestDispatcher("insertSuccess.jsp");
+		} else if ("insertScore".equals(wantTo)) {
+			ArrayList<Integer> info = new ArrayList<>();
+			info.add(Integer.parseInt(request.getParameter("sid")));
+			info.add(Integer.parseInt(request.getParameter("cid")));
+			info.add(Integer.parseInt(request.getParameter("score")));
+			dataBase.insertInfo(info, wantTo);
+			view = request.getRequestDispatcher("insertSuccess.jsp");
+ 		} else if ("updateStudentInfo".equals(wantTo)) {
+ 			student = new Student(Integer.parseInt(request.getParameter("sid")),
+					request.getParameter("name"));
+			student.setAge(Integer.parseInt(request.getParameter("age")));
+			dataBase.updateInfo(student, wantTo);
+ 		} else if ("updateCourseInfo".equals(wantTo)) {
+ 			Course course = new Course(Integer.parseInt(request.getParameter("cid")),
+					request.getParameter("cname"));
+ 			dataBase.updateInfo(course, wantTo);
+ 		} else if ("updateScore".equals(wantTo)) {
+ 			ArrayList<Integer> info = new ArrayList<>();
+//			info.add(Integer.parseInt(request.getParameter("sid")));
+//			info.add(Integer.parseInt(request.getParameter("cid")));
+//			info.add(Integer.parseInt(request.getParameter("score")));
+ 			info.add(20134019);
+ 			info.add(001);
+ 			info.add(100);
+			dataBase.updateInfo(info, wantTo);
+ 		}
 		
 		view.forward(request, response);
 	}

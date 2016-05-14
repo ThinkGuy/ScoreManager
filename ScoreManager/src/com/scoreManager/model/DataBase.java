@@ -1,5 +1,6 @@
 package com.scoreManager.model;
 
+import java.nio.file.Watchable;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -18,7 +19,7 @@ import com.sun.swing.internal.plaf.basic.resources.basic;
 public class DataBase {
 
 	public static final String STUDENT_TABLE = "student";
-	public static final String SCORE_TABLE = "course";
+	public static final String COURSE_TABLE = "course";
 	public static final String CHOOSE_TABLE = "choose";
 	public static final String MANGER_TABLE = "manager";
 
@@ -66,18 +67,22 @@ public class DataBase {
 	 * @param object
 	 * @return
 	 */
-	public boolean insertInfo(Object object) {
-		String sql = null;
-		if (object instanceof Student) {
+	public boolean insertInfo(Object object, String wantTo) {
+		if ("insertStudentInfo".equals(wantTo)) {
 			Student student = (Student) object;
-			sql = "insert into " + STUDENT_TABLE + " (sid, sname) values(" 
-			+ student.getId() + ",'" + student.getName() +"');";
-		} else if (object instanceof Course){
-			Course score = (Course) object;
-//			sql = "insert into " + SCORE_TABLE + " (sid, math, chinese, english) "
-//					+ "values(" + student.getId() + "," + score.getMath() + "," 
-//					+ score.getChinese() + ","  + score.getEnglish() + ");";
+			sql = "insert into " + STUDENT_TABLE + " (sid, sname, age) values(" 
+					+ student.getId() + ",'" + student.getName()  + "'," 
+					+ student.getAge() +");";
+		} else if ("insertCourseInfo".equals(wantTo)){
+			Course course = (Course) object;
+			sql = "insert into " + COURSE_TABLE + " (cid, cname) values(" 
+					+  course.getCid() + ",'" + course.getCname() + "');";
+		} else if ("insertScore".equals(wantTo)){
+			ArrayList<Integer> info = (ArrayList<Integer>) object;
+			sql = "insert into " + CHOOSE_TABLE + "(sid, cid, score) values(" 
+					+ info.get(0) + "," + info.get(1) + "," + info.get(2) + ");";
 		} else {
+			//insert managerInfo.
 			Manager manager = (Manager)object;
 			sql = "insert into " + MANGER_TABLE + " (name, password) values('"
 					+ manager.getName() + "','" + manager.getPassword() + "');";
@@ -168,6 +173,36 @@ public class DataBase {
 		}
 		
 		return object;
+	}
+	
+	/**
+	 * update.
+	 * @param object
+	 * @param wantTo
+	 * @return
+	 */
+	public boolean updateInfo(Object object, String wantTo) {
+		if ("updateStudentInfo".equals(wantTo)) {
+			Student student = (Student) object;
+			//TODO 修改其他信息。
+			//修改姓名
+			sql = "update " + STUDENT_TABLE + " set age=" + student.getAge()
+					+ " where sid = " + student.getId() + ";";
+		} else if ("updateCourseInfo".equals(wantTo)) {
+			Course course = (Course) object;
+			sql = "update " + COURSE_TABLE + " set cname='" + course.getCname() 
+					+ "' where cid =" + course.getCid(); 
+		} else if ("updateScore".equals(wantTo)) {
+			ArrayList<Integer> info = (ArrayList<Integer>)object;
+			sql = "update " + CHOOSE_TABLE + " set score=" + info.get(2) 
+					+ " where cid=" + info.get(1) + " and sid=" + info.get(0) 
+					+ ";";
+		} else {
+			//manager.
+		}
+		
+		
+		return executeSql(sql);
 	}
 	
 	public static void main(String[] args) {
