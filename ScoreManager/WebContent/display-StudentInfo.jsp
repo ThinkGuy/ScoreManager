@@ -28,7 +28,5 @@
 			</tr>
 		</table>
 	</div>
-	<input type="button" value="再查询" 
-		onclick="window.location.href='searchStudentInfo.jsp'">
 	</body>
 </html>

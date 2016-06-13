@@ -8,7 +8,7 @@
 		<link href="css/button.css" rel="stylesheet" type="text/css" />
 	</head>
 	
-	<body>
+	<body style="background:url('images/background.jpg') no-repeat;">
 	<div class="topbar-wrap white">
 	    <div class="topbar-inner clearfix">
 	        <div class="topbar-logo-wrap clearfix">
@@ -35,7 +35,7 @@
                     <ul class="sub-menu">
                         <li><a href="searchStudentInfo.jsp"><i class="icon-font">&#xe003;</i>查询学生信息</a></li>
                         <li><a href="searchCourseInfo.jsp"><i class="icon-font">&#xe003;</i>查询课程信息</a></li>
-                        <li><a href="searchScore.jsp"><i class="icon-font">&#xe003;</i>查询学生信息</a></li>
+                        <li><a href="searchScore.jsp"><i class="icon-font">&#xe003;</i>查询学生成绩</a></li>
                     </ul>
                 </li>
                 <li>
@@ -50,7 +50,7 @@
                     <a href="#"><i class="icon-font">&#xe017;</i>添加</a>
                     <ul class="sub-menu">
                         <li><a href="insertStudentInfo.jsp"><i class="icon-font">&#xe017;</i>添加学生信息</a></li>
-                        <li><a href="insertCourseInfo.jsp"><i class="icon-font">&#xe017;</i>修改课程信息</a></li>
+                        <li><a href="insertCourseInfo.jsp"><i class="icon-font">&#xe017;</i>添加课程信息</a></li>
                         <li><a href="insertScore.jsp"><i class="icon-font">&#xe017;</i>添加学生成绩</a></li>
                     </ul>
                 </li>

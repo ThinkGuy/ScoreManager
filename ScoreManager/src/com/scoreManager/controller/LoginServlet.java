@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import com.scoreManager.model.*;
 
 /**
- * Servlet implementation class LoginServlet
+ * Servlet implementation class LoginServlet.
+ * 
+ * @author Liu,xinwei.
  */
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {

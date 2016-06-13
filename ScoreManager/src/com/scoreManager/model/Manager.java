@@ -1,5 +1,10 @@
 package com.scoreManager.model;
 
+/**
+ * 
+ * @author Liu,xinwei.
+ *
+ */
 public class Manager {
 	/**
 	 * Manager name.

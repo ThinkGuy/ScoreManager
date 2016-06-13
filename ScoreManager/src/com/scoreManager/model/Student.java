@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * Student.
  * 
- * @author 刘鑫伟
+ * @author Liu,xinwei.
  *
  */
 public class Student {

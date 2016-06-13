@@ -3,7 +3,7 @@ package com.scoreManager.model;
 /**
  * Course.
  * 
- * @author 刘鑫伟
+ * @author Liu,xinwei.
  *
  */
 public class Course {

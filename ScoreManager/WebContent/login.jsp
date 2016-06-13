@@ -4,7 +4,7 @@
 <title>学生成绩管理系统</title> 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <script type="text/javascript" src="images/login.js"></script>
-<link href="css/login2.css" rel="stylesheet" type="text/css" />
+<link href="css/login.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <h1>欢迎使用学生成绩管理系统<sup>2016</sup></h1>

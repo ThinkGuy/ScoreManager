@@ -15,7 +15,9 @@ import com.scoreManager.model.DataBase;
 import com.scoreManager.model.Student;
 
 /**
- * Servlet implementation class ManagerServlet
+ * Servlet implementation class ManagerServlet.
+ * 
+ * @author Liu,xinwei.
  */
 @WebServlet("/ManagerServlet")
 public class ManagerServlet extends HttpServlet {

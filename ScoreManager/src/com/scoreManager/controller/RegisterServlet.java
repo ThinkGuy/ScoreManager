@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class RegisterServlet
+ * Servlet implementation class RegisterServlet.
+ * 
+ * @author Liu,xinwei.
  */
 @WebServlet("/RegisterServlet")
 public class RegisterServlet extends HttpServlet {
