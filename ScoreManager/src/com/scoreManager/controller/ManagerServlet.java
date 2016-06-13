@@ -1,7 +1,6 @@
 package com.scoreManager.controller;
 
 import java.io.IOException;
-import java.nio.file.Watchable;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -23,6 +22,7 @@ public class ManagerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private String wantTo;
     private Student student;
+    private Course course;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -60,32 +60,53 @@ public class ManagerServlet extends HttpServlet {
 			Course course = new Course(Integer.parseInt(request.getParameter("cid")),
 					request.getParameter("cname"));
 			dataBase.insertInfo(course, wantTo);
-			view = request.getRequestDispatcher("insertSuccess.jsp");
+			view = request.getRequestDispatcher("success.jsp");
 		} else if ("insertScore".equals(wantTo)) {
-			ArrayList<Integer> info = new ArrayList<>();
+			ArrayList<Integer> info = new ArrayList<Integer>();
 			info.add(Integer.parseInt(request.getParameter("sid")));
 			info.add(Integer.parseInt(request.getParameter("cid")));
 			info.add(Integer.parseInt(request.getParameter("score")));
 			dataBase.insertInfo(info, wantTo);
-			view = request.getRequestDispatcher("insertSuccess.jsp");
+			view = request.getRequestDispatcher("success.jsp");
  		} else if ("updateStudentInfo".equals(wantTo)) {
  			student = new Student(Integer.parseInt(request.getParameter("sid")),
 					request.getParameter("name"));
 			student.setAge(Integer.parseInt(request.getParameter("age")));
 			dataBase.updateInfo(student, wantTo);
+			view = request.getRequestDispatcher("success.jsp");
  		} else if ("updateCourseInfo".equals(wantTo)) {
  			Course course = new Course(Integer.parseInt(request.getParameter("cid")),
 					request.getParameter("cname"));
  			dataBase.updateInfo(course, wantTo);
+ 			view = request.getRequestDispatcher("success.jsp");
  		} else if ("updateScore".equals(wantTo)) {
- 			ArrayList<Integer> info = new ArrayList<>();
-//			info.add(Integer.parseInt(request.getParameter("sid")));
-//			info.add(Integer.parseInt(request.getParameter("cid")));
-//			info.add(Integer.parseInt(request.getParameter("score")));
- 			info.add(20134019);
- 			info.add(001);
- 			info.add(100);
+ 			ArrayList<Integer> info = new ArrayList<Integer>();
+			info.add(Integer.parseInt(request.getParameter("sid")));
+			info.add(Integer.parseInt(request.getParameter("cid")));
+			info.add(Integer.parseInt(request.getParameter("score")));
 			dataBase.updateInfo(info, wantTo);
+			view = request.getRequestDispatcher("success.jsp");
+ 		} else if ("deleteStudentInfo".equals(wantTo)) {
+ 			student = new Student(Integer.parseInt(
+					request.getParameter("sid")));
+			if (dataBase.delete(student, wantTo)) {
+				view = request.getRequestDispatcher("success.jsp");
+				request.setAttribute("student", student);
+			}
+ 		} else if ("deleteCourseInfo".equals(wantTo)) {
+ 			course = new Course(Integer.parseInt(request.getParameter("cid")));
+ 			if (dataBase.delete(course, wantTo)) {
+				view = request.getRequestDispatcher("success.jsp");
+				request.setAttribute("student", student);
+			}
+ 		} else if ("deleteScore".equals(wantTo)) {
+ 			ArrayList<Integer> info = new ArrayList<Integer>();
+ 			info.add(Integer.parseInt(request.getParameter("sid")));
+ 			info.add(Integer.parseInt(request.getParameter("cid")));
+ 			if (dataBase.delete(info, wantTo)) {
+				view = request.getRequestDispatcher("success.jsp");
+				request.setAttribute("student", student);
+			}
  		}
 		
 		view.forward(request, response);

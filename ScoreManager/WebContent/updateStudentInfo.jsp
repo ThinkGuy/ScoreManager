@@ -7,12 +7,12 @@
 	
 	<body>
 		<form action="scoreManager.do">
-			<h2>插入学生信息</h2> <br><br>
-			<input type="hidden" name="wantTo" value="insertStudentInfo"/>
+			<h2>更新学生信息</h2> <br><br>
+			<input type="hidden" name="wantTo" value="updateStudentInfo"/>
 			请输入学号:<input type="text" name="sid"/> <br><br>
 			请输入姓名:<input type="text" name="name"/> <br><br>
 			请输入年龄:<input type="text" name="age"/> <br><br>
-			<input type="submit" value="insert"/>
+			<input type="submit" value="update"/>
 		</form>
 	</body>
 </html>

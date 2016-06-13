@@ -68,6 +68,14 @@ public class Course {
 	/**
 	 * Constructor using fields.
 	 * @param cid
+	 */
+	public Course(int cid) {
+		this.cid = cid;
+	}
+	
+	/**
+	 * Constructor using fields.
+	 * @param cid
 	 * @param cname
 	 */
 	public Course(int cid, String cname) {

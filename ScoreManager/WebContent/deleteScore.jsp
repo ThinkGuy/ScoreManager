@@ -7,11 +7,11 @@
 	
 	<body>
 		<form action="scoreManager.do">
-			<h2>查询学生信息</h2> <br><br>
-			<input type="hidden" name="wantTo" value="deleteCourseInfo"/>
+			<h2>删除学生信息</h2> <br><br>
+			<input type="hidden" name="wantTo" value="deleteScore"/>
 			请输入学号:<input type="text" name="sid"/> <br><br>
 			请输入课程号:<input type="text" name="cid"/> <br><br>
-			<input type="submit" value="search"/>
+			<input type="submit" value="delete"/>
 		</form>
 	</body>
 </html>

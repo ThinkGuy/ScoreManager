@@ -1,6 +1,5 @@
 package com.scoreManager.model;
 
-import java.nio.file.Watchable;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -8,7 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import com.sun.swing.internal.plaf.basic.resources.basic;
 
 /**
  * DataBase.
@@ -131,7 +129,7 @@ public class DataBase {
 			object = student;
 			//TODO else man.
 		} else if ("searchCourseInfo".equals(wantTo)) {
-			ArrayList<Course> courses = new ArrayList<>();
+			ArrayList<Course> courses = new ArrayList<Course>();
 			sql = "select * from course;";
 
 			try {
@@ -186,7 +184,8 @@ public class DataBase {
 			Student student = (Student) object;
 			//TODO 修改其他信息。
 			//修改姓名
-			sql = "update " + STUDENT_TABLE + " set age=" + student.getAge()
+			sql = "update " + STUDENT_TABLE + " set sname= '" + student.getName()
+					+ "',age=" + student.getAge()
 					+ " where sid = " + student.getId() + ";";
 		} else if ("updateCourseInfo".equals(wantTo)) {
 			Course course = (Course) object;
@@ -205,12 +204,25 @@ public class DataBase {
 		return executeSql(sql);
 	}
 	
-	public static void main(String[] args) {
-		DataBase dataBase = new DataBase();
+	/**
+	 *  delete.
+	 * @return
+	 */
+	public boolean delete(Object object, String wantTo) {
+		if ("deleteStudentInfo".equals(wantTo)) {
+			Student student = (Student)object;
+			sql = "delete from " + STUDENT_TABLE + " where sid=" 
+					+ student.getId() + ";";
+		} else if ("deleteCourseInfo".equals(wantTo)) {
+			Course course = (Course)object;
+			sql = "delete from " + COURSE_TABLE + " where cid=" 
+					+ course.getCid() + ";";
+		} else if ("deleteScore".equals(wantTo)) {
+			ArrayList<Integer> info = (ArrayList<Integer>) object;
+			sql = "delete from " + CHOOSE_TABLE + " where sid=" + info.get(0) 
+					+ " and cid=" + info.get(1) + ";"; 
+		} 
 		
-//		dataBase.student = new Student(2013400, "刘鑫伟");
-		Manager manager = new Manager("20134019", "20134019");
-		
+		return executeSql(sql);
 	}
-	
 }
