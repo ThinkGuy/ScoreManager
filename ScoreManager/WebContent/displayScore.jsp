@@ -2,34 +2,37 @@
 <%@page import="com.scoreManager.model.Student"%>
 <%@page import="com.scoreManager.model.Course"%>
 <%@ page language="java"  pageEncoding="UTF-8"%> 
-
+<%@ include file="index.jsp" %> 
 <html>
 	<head>
 		<title>学生成绩管理系统</title>
+		<link href="css/table.css" rel="stylesheet" type="text/css" />
+		<link href="css/button.css" rel="stylesheet" type="text/css" />
 	</head>
 	
 	<body>
-		学号:${requestScope.student.id} <br>
-		姓名:${requestScope.student.name } <br>
-		年龄:${requestScope.student.age } <br>
-		
-		<%
-			Student student = (Student)request.getAttribute("student");
-			ArrayList<Course> courses = student.getCourses();
-		
-			for (Course course : courses) {
-		%>
-		<tr>  
-		<td><%=course.toString()%></td> <br>  
-		</tr>  
-		<%
-			}
-		
-		%>
-		
-		<input type="button" value="重新选择功能" 
-			onclick="window.location.href='choose.jsp'">
-		<input type="button" value="再查询" 
-			onclick="window.location.href='searchStudentInfo.jsp'">
+		<div id="content">
+			${requestScope.student.name}同学，你的成绩为：
+		</div>
+			
+		<table class="imagetable">
+			<tr>
+				<th>课程号</th><th>课程名</th><th>成绩</th>
+			</tr>
+			<%
+				Student student = (Student)request.getAttribute("student");
+				ArrayList<Course> courses = student.getCourses();
+			
+				for (Course course : courses) {
+			%>
+			<tr>
+				<td><%=course.getCid()%></td>
+				<td><%=course.getCname()%></td>
+				<td><%=course.getScore()%></td>
+			</tr>
+			<%
+				}
+			%>
+		</table>
 	</body>
 </html>

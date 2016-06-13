@@ -7,10 +7,8 @@
 	
 	<body>
 		<form action="scoreManager.do">
-			<h2>查询学生成绩</h2> <br><br>
-			<input type="hidden" name="wantTo" value="searchScore"/>
-			请输入学号:<input type="text" name="sid"/> <br><br>
-			<input type="submit" value="search"/>
+			<input type="hidden" name="wantTo" value="searchCourseInfo"/>
+			<input type="submit" value="查询课程信息"/> <br>
 		</form>
 	</body>
 </html>

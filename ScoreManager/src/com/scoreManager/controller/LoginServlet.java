@@ -31,7 +31,7 @@ public class LoginServlet extends HttpServlet {
 		
 		RequestDispatcher view = null;
 		if (name.equals(manager.getName()) && password.equals(manager.getPassword())) {
-			view = request.getRequestDispatcher("choose.jsp");
+			view = request.getRequestDispatcher("index.jsp");
 		} else {
 			view = request.getRequestDispatcher("loginFalse.jsp");
 		}
