@@ -3,7 +3,7 @@
 <html><head>
 <title>学生成绩管理系统</title> 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<script type="text/javascript" src="images/login.js"></script>
+<script type="text/javascript" src="js/login.js"></script>
 <link href="css/login.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
